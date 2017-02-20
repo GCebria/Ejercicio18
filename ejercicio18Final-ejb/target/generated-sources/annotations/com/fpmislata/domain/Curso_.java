@@ -10,10 +10,11 @@ import javax.persistence.metamodel.StaticMetamodel;
 public abstract class Curso_ {
 
 	public static volatile SingularAttribute<Curso, String> descripcion;
+	public static volatile SingularAttribute<Curso, Integer> id_tutor;
 	public static volatile SetAttribute<Curso, Alumno> alumnos;
 	public static volatile SingularAttribute<Curso, Integer> id;
 	public static volatile SingularAttribute<Curso, String> nombre;
-	public static volatile SingularAttribute<Curso, Integer> tutor;
+	public static volatile SingularAttribute<Curso, Tutor> tutor;
 
 }
 

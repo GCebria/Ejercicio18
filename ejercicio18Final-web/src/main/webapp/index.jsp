@@ -15,6 +15,7 @@
         <h1><a href="test">Lista Alumnos </a></h1>
         <h1><a href="ListaCursos">Lista Cursos</a></h1>
         <h1><a href="ListaTutores">Lista Tutores</a></h1>
+        <h1><a href="ListaLibros">Lista Libros</a></h1>
         <h1><a href="ListaAlumnoCursos">Lista Todo</a></h1>
     </body>
 </html>

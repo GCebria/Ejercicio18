@@ -1,6 +1,7 @@
 package com.fpmislata.domain;
 
 import javax.annotation.Generated;
+import javax.persistence.metamodel.ListAttribute;
 import javax.persistence.metamodel.SetAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
@@ -9,6 +10,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 @StaticMetamodel(Alumno.class)
 public abstract class Alumno_ {
 
+	public static volatile ListAttribute<Alumno, Libro> libros;
 	public static volatile SetAttribute<Alumno, Curso> cursos;
 	public static volatile SingularAttribute<Alumno, String> apellido;
 	public static volatile SingularAttribute<Alumno, Integer> id;

@@ -7,8 +7,10 @@ package com.fpmislata;
 
 import com.fpmislata.domain.Alumno;
 import com.fpmislata.domain.Curso;
+import com.fpmislata.domain.Libro;
 import com.fpmislata.domain.Tutor;
 import com.fpmislata.service.CursoServiceLocal;
+import com.fpmislata.service.LibroServiceLocal;
 import com.fpmislata.service.TutorServiceLocal;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -31,8 +33,12 @@ import javax.servlet.http.HttpServletResponse;
         urlPatterns = {"/listarAlumnos",
             "/ListaAlumnoCursos",
             "/ListaTutores",
+            "/ListaLibros",
             "/ListaCursos",})
 public class ControllerAlumno extends HttpServlet {
+
+    @EJB
+    private LibroServiceLocal libroService;
 
     @EJB
     private TutorServiceLocal tutorService;
@@ -56,6 +62,8 @@ public class ControllerAlumno extends HttpServlet {
             ListaAlumnoCursos(request, response);
         } else if (userPath.equals("/ListaCursos")) {
             ListaCursos(request, response);
+        } else if (userPath.equals("/ListaLibros")) {
+            ListaLibros(request, response);
         } else if (userPath.equals("/ListaTutores")) {
             ListaTutores(request, response);
 
@@ -89,6 +97,22 @@ public class ControllerAlumno extends HttpServlet {
             request.getSession().setAttribute("tutores", listaArray);
 
             RequestDispatcher rd = request.getRequestDispatcher("/listaTutores.jsp");
+            rd.forward(request, response);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void ListaLibros(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            List lista = libroService.listLibros();
+//                    
+            ArrayList<Libro> listaArray = new ArrayList<>(lista);
+//                    
+//                    
+            request.getSession().setAttribute("libros", listaArray);
+
+            RequestDispatcher rd = request.getRequestDispatcher("/listaLibros.jsp");
             rd.forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();

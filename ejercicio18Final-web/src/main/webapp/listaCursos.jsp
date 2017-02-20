@@ -8,6 +8,8 @@
 <%@page import="com.fpmislata.domain.Curso"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<html>
+    <head>
 </head>
 <body>
 

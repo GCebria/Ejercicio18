@@ -13,6 +13,7 @@
         <url-pattern>/listarAlumnos</url-pattern>
         <url-pattern>/ListaCursos</url-pattern>
         <url-pattern>/ListaTutores</url-pattern>
+        <url-pattern>/ListaLibros</url-pattern>
         <url-pattern>/ListaAlumnoCursos</url-pattern>
         <url-pattern>/ControllerAlumno</url-pattern>
     </servlet-mapping>

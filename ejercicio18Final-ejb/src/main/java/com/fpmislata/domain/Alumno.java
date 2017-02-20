@@ -7,6 +7,7 @@ package com.fpmislata.domain;
 
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.*;
 import javax.persistence.ManyToMany;
@@ -32,6 +33,9 @@ public class Alumno implements Serializable {
     @Column(nullable = true, length = 9)
     private String dni;
 
+    @OneToMany(mappedBy = "alumno", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    private Set<Libro> libros;
+
     @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     @JoinTable(name = "matricula",
             joinColumns = @JoinColumn(name = "id_alumno"),
@@ -40,6 +44,7 @@ public class Alumno implements Serializable {
 
     public Alumno() {
         this.cursos = new HashSet<>();
+        this.libros = new HashSet<>();
     }
 
     public Alumno(String nombre, String apellido, String dni) {
@@ -47,6 +52,7 @@ public class Alumno implements Serializable {
         this.apellido = apellido;
         this.dni = dni;
         this.cursos = new HashSet<>();
+        this.libros = new HashSet<>();
     }
 
     @Override
@@ -114,10 +120,18 @@ public class Alumno implements Serializable {
         this.cursos = cursos;
     }
 
+    public Set<Libro> getLibros() {
+        return libros;
+    }
+
+    public void setLibros(Set<Libro> libros) {
+        this.libros = libros;
+    }
+
+   
     @Override
     public String toString() {
         return "Alumno{" + "id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni + ", cursos=" + cursos + '}';
     }
 
-   
 }

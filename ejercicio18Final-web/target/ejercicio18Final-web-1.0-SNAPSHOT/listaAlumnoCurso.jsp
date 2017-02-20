@@ -4,6 +4,8 @@
     Author     : Gerard
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="com.fpmislata.domain.Libro"%>
 <%@page import="com.fpmislata.domain.Curso"%>
 <%@page import="java.util.Set"%>
 <%@page import="java.util.HashSet"%>
@@ -33,7 +35,7 @@
                     String apellido = alumno.getApellido();
                     String dni = alumno.getDni();
                     Set<Curso> listaCursos= alumno.getCursos();
-                  
+                   
                 %>                
 		<tr>
                     <th>Nombre</th>
@@ -48,9 +50,10 @@
                     <td><%=dni%></td>
                 </tr>
 		 <tr>
+                     <th ></th>
                      <th >Cursos</th>
                      <th >Tutor</th>
-                     <th ></th>
+                     
                    
                 </tr>
                 
@@ -60,11 +63,37 @@
                     
                 %>
                 <tr>
+                    <td></td>
                     <td><%=nombreCurso%></td>
                     <td><%=nombreTutor%></td>
-                    <td></td>
+                    
                 </tr>
-                <%}%>
+                
+                <%}Set<Libro> listaLibros = alumno.getLibros();
+                    for (Libro l: listaLibros){ 
+                        if (l != null){
+                %>
+                    <tr>
+                   <th>Libros</th>
+                     <th>Título</th>
+                     <th>Autor</th>
+                    
+                </tr>
+                
+                <%   
+                  
+                       
+                   String titulo = l.getTitulo();
+                   String autor = l.getAutor();
+
+%>
+                
+                    <td></td>
+                     <td><%=titulo%></td>
+                     <td><%=autor%></td>
+                
+                
+                <%}}%>
                 <%}%>
                 
                 </table>
