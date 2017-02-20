@@ -33,13 +33,13 @@
                     
                     int id = curso.getId();
                     String nombre = curso.getNombre();
-                    int id_tutor = curso.getTutor();
+                    String tutor = curso.getTutor().getNombre();
                     String descripcion = curso.getDescripcion();
                     
                 %>                
 		<tr>
                     <td><%=nombre%></a></td>
-                    <td><%=id_tutor%></td>
+                    <td><%=tutor%></td>
                     <td><%=descripcion%></td>
                     <td><a href="ModificarPersona?accion=editar&id=<%=id%>">Modificar</td>
                     <td><a href="EliminarPersona?id=<%=id%>">Eliminar</a></td>

@@ -12,27 +12,31 @@ import javax.persistence.*;
 
 @Entity
 @NamedQueries({
-    @NamedQuery(name = "Curso.findAll", query ="SELECT c FROM Curso c ORDER BY c.id")})
-    @Table (name = "cursos")
-public class Curso implements Serializable{
-    
-    private static final long serialVersionUID = 1L; 
-    
+    @NamedQuery(name = "Curso.findAll", query = "SELECT c FROM Curso c ORDER BY c.id")})
+@Table(name = "cursos")
+public class Curso implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     @Id
     @Column(name = "id_curso", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id; 
-    
-    @Column(name="nombre", nullable =false, length=45)
+    private int id;
+
+    @Column(name = "nombre", nullable = false, length = 45)
     private String nombre;
-    
-    @Column(name="tutor", nullable=false)
-    private Integer tutor;
-    
-    @Column(name="descripcion")
+
+    @Column(name = "id_tutor", nullable = false)
+    private Integer id_tutor;
+
+    @Column(name = "descripcion")
     private String descripcion;
-    
-    @ManyToMany(cascade = {CascadeType.ALL}, mappedBy="cursos")
+
+    @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    @PrimaryKeyJoinColumn
+    private Tutor tutor;
+
+    @ManyToMany(cascade = {CascadeType.ALL}, mappedBy = "cursos")
     private Set<Alumno> alumnos;
 
     public Curso() {
@@ -41,13 +45,11 @@ public class Curso implements Serializable{
 
     public Curso(String nombre, Integer tutor, String descripcion) {
         this.nombre = nombre;
-        this.tutor = tutor;
+        this.id_tutor = tutor;
         this.descripcion = descripcion;
         this.alumnos = new HashSet<>();
     }
 
-    
-    
     public int getId() {
         return id;
     }
@@ -64,12 +66,12 @@ public class Curso implements Serializable{
         this.nombre = nombre;
     }
 
-    public Integer getTutor() {
-        return tutor;
+    public Integer getId_tutor() {
+        return id_tutor;
     }
 
-    public void setTutor(Integer tutor) {
-        this.tutor = tutor;
+    public void setId_tutor(Integer id_tutor) {
+        this.id_tutor = id_tutor;
     }
 
     public String getDescripcion() {
@@ -88,6 +90,15 @@ public class Curso implements Serializable{
         this.alumnos = alumnos;
     }
 
+    public Tutor getTutor() {
+        return tutor;
+    }
+
+    public void setTutor(Tutor tutor) {
+        this.tutor = tutor;
+    }
+
+    
     @Override
     public int hashCode() {
         int hash = 5;
@@ -115,11 +126,7 @@ public class Curso implements Serializable{
 
     @Override
     public String toString() {
-        return "Curso{" + "id=" + id + ", nombre=" + nombre + ", tutor=" + tutor + ", descripcion=" + descripcion + ", alumnos=" + alumnos + '}';
+        return "Curso{" + "id=" + id + ", nombre=" + nombre + ", tutor=" + id_tutor + ", descripcion=" + descripcion + ", alumnos=" + alumnos + '}';
     }
-    
-    
-    
-    
-    
+
 }

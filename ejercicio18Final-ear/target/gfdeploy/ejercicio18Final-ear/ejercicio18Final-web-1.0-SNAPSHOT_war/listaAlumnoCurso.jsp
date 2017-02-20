@@ -48,17 +48,20 @@
                     <td><%=dni%></td>
                 </tr>
 		 <tr>
-                     <th colspan="3">Cursos</th>
+                     <th >Cursos</th>
+                     <th >Tutor</th>
+                     <th ></th>
                    
                 </tr>
                 
                 <%for(Curso c : listaCursos){
                     String nombreCurso = c.getNombre();
+                    String nombreTutor = c.getTutor().getNombre();
                     
                 %>
                 <tr>
                     <td><%=nombreCurso%></td>
-                    <td></td>
+                    <td><%=nombreTutor%></td>
                     <td></td>
                 </tr>
                 <%}%>
